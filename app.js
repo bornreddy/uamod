@@ -31,6 +31,17 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+http.get("http://www.ursulineacademy.org/data/calendar/rsscache/calendar_334.rss", function(res) {
+	console.log("Got response: " + res.statusCode);
+	res.setEncoding('utf8');
+   		res.on('data',function(chunk) {
+   			console.log(chunk)
+   		})
+    }).on('error', function(e) {
+	    console.log("Got error: " + e.message);
+	});
