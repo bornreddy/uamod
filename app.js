@@ -8,7 +8,6 @@
  var user = require('./routes/user');
  var http = require('http');
  var path = require('path');
- parse = require('jsonml').parse;
  var moment = require('moment');
 
  
@@ -78,7 +77,7 @@ http.get("http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss", f
       	description = xml.substring(d1, d2)
       	console.log("description: " + description)
       	xml = xml.substring(d2+13, xml.length)
-
+      	
       }
     })
 }).on('error', function(e) {
