@@ -9,6 +9,7 @@
  var http = require('http');
  var path = require('path');
  parse = require('jsonml').parse;
+ var parseString = require('xml2js').parseString;
  
 
  var app = express();
@@ -38,7 +39,7 @@ http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
-//goals: find which items match the date of today, find the letter day, and find the schedule 
+//goals: find which items match the date of today, find the letter day, and find the schedule
 var xml = ""
 http.get("http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss", function(res) {
 	console.log("Got response: " + res.statusCode);
@@ -46,13 +47,19 @@ http.get("http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss", f
 	res.on('data',function(chunk) {
 		xml += chunk
 	});
-	// res.on('end', function() {
- //        console.log(xml);
-	// 	console.log(parse(xml));
- //    })
-
+	/*res.on('end', function() {
+        console.log(xml);
+		console.log(parse(xml));
+    })*/
     res.on('end', function(){
-    	//write a parser here
+      if (xml.indexOf("<item>") != -1) {
+      	i1 = xml.indexOf("<item>")
+      	i2 = xml.indexOf("</item>")
+
+      	t1 = xml.indexOf("<title>") + 7
+      	t2 = xml.indexOf("</title>")
+      	console.log(xml.substring(t1, t2))
+      }
     })
 }).on('error', function(e) {
 	console.log("Got error: " + e.message);
