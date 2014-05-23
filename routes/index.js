@@ -39,13 +39,16 @@ exports.index = function(req, res) {
             }
           }
         }
-
-
       }
       console.log(today_events)
-
+      //find the date
       prettyDate = moment(current_day).format('MMMM Do YYYY')
-      res.render('index', { title: 'Express', ua_letter: today_events[0], ua_date: prettyDate });
+      //find the time
+      prettyTime = moment().format('h:mm:ss a')
+      //check to see what letter day it is (if a letter day)
+      res.render('index', { title: 'UA Mod', ua_letter: today_events[0], ua_date: prettyDate, time: prettyTime});
+
+      //check to see what schedule it is
     }
   });
 
