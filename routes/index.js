@@ -13,6 +13,7 @@ exports.index = function(req, res) {
   var rss = "http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss"
   request(rss, function(error, response, xml) {
     if (!error && response.statusCode == 200) {
+      var current_day = new Date()
       while (xml.indexOf("<item>") != -1) {
         i1 = xml.indexOf("<item>")
         i2 = xml.indexOf("</item>")
@@ -34,7 +35,7 @@ exports.index = function(req, res) {
         //find the events for today's date only
         var ua_calendar_day = moment(date).toDate()
         console.log("ua_calendar_day: " + ua_calendar_day + "------" + ua_calendar_day.valueOf())
-        var current_day = new Date()
+
         current_day.setHours(0)
         current_day.setMinutes(0)
         current_day.setSeconds(0)
@@ -43,8 +44,11 @@ exports.index = function(req, res) {
         //   console.log("TRUE!!!!!!")
         // }
       }
+
+      prettyDate = moment(current_day).format('MMMM Do YYYY')
+      res.render('index', { title: 'Express', ua_letter: 'A day', ua_date: prettyDate });
     }
   });
 
-  res.render('index', { title: 'Express', ua_letter: 'A day', ua_date: 'aaa' });
+
 };
