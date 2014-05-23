@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.4.7",
     "jade": "*",
-    "moment": "~2.6.0"
+    "moment": "~2.6.0",
+    "request": ">=2.36.0"
   }
 }
