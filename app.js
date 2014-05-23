@@ -65,7 +65,7 @@ http.get("http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss", f
       	t1 = xml.indexOf("<title>") + 7
       	t2 = xml.indexOf("</title>")
       	title = xml.substring(t1, t2)
-      	// console.log("title: " + title)
+      	console.log("title: " + title)
       	// xml = xml.substring(t2+7, xml.length)
       	l1 = xml.indexOf("<link>") + 6
       	l2 = xml.indexOf("</link>")
@@ -75,9 +75,15 @@ http.get("http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss", f
       	d1 = xml.indexOf("<description>") + 13
       	d2 = xml.indexOf("</description>")
       	description = xml.substring(d1, d2)
-      	console.log("description: " + description)
-      	xml = xml.substring(d2+13, xml.length)
-      	
+      	// // console.log("description: " + description)
+      	// // xml = xml.substring(d2+13, xml.length)
+      	date1 = xml.indexOf("Date: ") + 6
+      	date2 = xml.indexOf("</br >")
+      	date = xml.substring(date1, date2)
+      	// console.log("date: " + date)
+      	//shorten xml to exclude all material before to the first encountered </pubDate>
+      	p = xml.indexOf("</pubDate>")
+      	xml = xml.substring(p+10, xml.length)
       }
     })
 }).on('error', function(e) {
