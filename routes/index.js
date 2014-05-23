@@ -30,7 +30,12 @@ exports.index = function(req, res) {
         d1 = xml.indexOf("<description>") + 13
         d2 = xml.indexOf("</description>")
         description = xml.substring(d1, d2)
-        console.log("description: " + description)
+
+        date1 = description.indexOf("Date: ") + 6
+        date2 = description.indexOf("<br")
+        date = description.substring(date1, date2)
+
+        console.log("date: " + date)
         xml = xml.substring(d2+13, xml.length)
       }
     }
