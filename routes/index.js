@@ -1,17 +1,12 @@
 var request = require('request');
 var moment = require('moment');
 
-/*
- * GET home page.
- */
-
 exports.index = function(req, res) {
-  
-  //----start of the code to get Ursuline Academy info, figure out how to put this into a dfferent file 
-  //(http://scotch.io/tutorials/javascript/node-and-angular-to-do-app-application-organization-and-structure)
-
+  //is this the best place for this list? 
+  var today_events = []
   var rss = "http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss"
   request(rss, function(error, response, xml) {
+    var current_day = new Date()
     if (!error && response.statusCode == 200) {
       var current_day = new Date()
       while (xml.indexOf("<item>") != -1) {
@@ -31,22 +26,26 @@ exports.index = function(req, res) {
         date2 = description.indexOf("<br")
         date = description.substring(date1, date2)
         xml = xml.substring(d2+13, xml.length)
-
-        //find the events for today's date only
+        //find the titles for today's dates
         var ua_calendar_day = moment(date).toDate()
-        console.log("ua_calendar_day: " + ua_calendar_day + "------" + ua_calendar_day.valueOf())
 
-        current_day.setHours(0)
-        current_day.setMinutes(0)
-        current_day.setSeconds(0)
-        console.log("current_day: " + current_day + "-----" + current_day.valueOf())
-        // if (ua_calendar_day.valueOf() == current_day.valueOf()) {
-        //   console.log("TRUE!!!!!!")
-        // }
+
+        if (ua_calendar_day.getFullYear() == current_day.getFullYear()) {
+          if (ua_calendar_day.getMonth() == current_day.getMonth()) {
+            if (ua_calendar_day.getDate() == current_day.getDate()) {
+              console.log("same day")
+              // console.log("current_day: " + current_day + "ua_calendar_day: " + ua_calendar_day)
+              today_events.push(title)
+            }
+          }
+        }
+
+
       }
+      console.log(today_events)
 
       prettyDate = moment(current_day).format('MMMM Do YYYY')
-      res.render('index', { title: 'Express', ua_letter: 'A day', ua_date: prettyDate });
+      res.render('index', { title: 'Express', ua_letter: today_events[0], ua_date: prettyDate });
     }
   });
 
