@@ -43,11 +43,36 @@ exports.index = function(req, res) {
       console.log(today_events)
       //find the date
       prettyDate = moment(current_day).format('MMMM Do YYYY')
-      //find the time
+      //find the time -- update every second
       prettyTime = moment().format('h:mm:ss a')
       //check to see what letter day it is (if a letter day)
-      res.render('index', { title: 'UA Mod', ua_letter: today_events[0], ua_date: prettyDate, time: prettyTime});
+      letterDay = ""
+      switch (today_events[0]) {
+      case "A Day":
+        letterDay = "A Day";
+        break;
+      case "B Day":
+        letterDay = "B Day";
+        break;
+      case "C Day":
+        letterDay = "C Day";
+        break;
+      case "D Day":
+        letterDay = "D Day";
+        break;
+      case "E Day":
+        letterDay = "E Day";
+        break;
+      case "F Day":
+        letterDay = "F Day";
+        break;
+      default:
+        letterDay = "Today has no letter day." 
+      }
 
+
+
+      res.render('index', { title: 'UA Mod', ua_letter: letterDay, date: prettyDate, time: prettyTime});
       //check to see what schedule it is
     }
   });
