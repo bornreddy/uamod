@@ -1,8 +1,12 @@
+//go through and clean up code after! 
 var request = require('request');
 var moment = require('moment');
 var jsdom = require('jsdom');
 var window = jsdom.jsdom().createWindow();
 var $ = require('jquery')(window);
+var sched = require('sched');
+
+
 
 function sec_to_time(x) {
   if (x > 86400) {
@@ -22,8 +26,6 @@ function time_to_sec(h,m,s) {
   seconds += (h*3600) + (m*60) + (s)
   return seconds
 }
-
-
 
 exports.index = function(req, res) {
   //is this the best place for this list? 
@@ -123,6 +125,7 @@ exports.index = function(req, res) {
           schedule = "Activity 9"
         } else {
           schedule = "normal."
+
         }
       }
 
