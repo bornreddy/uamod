@@ -1,6 +1,29 @@
 var request = require('request');
 var moment = require('moment');
-var $ = require('jquery');
+var jsdom = require('jsdom');
+var window = jsdom.jsdom().createWindow();
+var $ = require('jquery')(window);
+
+function sec_to_time(x) {
+  if (x > 86400) {
+    console.log("false input time, exceeds 24 hours")
+    return [0]
+  }
+  var hours = Math.floor(x/3600)
+  var y = x % 3600
+  var minutes = Math.floor(y/60) 
+  var seconds = y % 60
+  var time_array = [hours,minutes,seconds]
+  return time_array
+}
+
+function time_to_sec(h,m,s) {
+  var seconds = 0
+  seconds += (h*3600) + (m*60) + (s)
+  return seconds
+}
+
+
 
 exports.index = function(req, res) {
   //is this the best place for this list? 
@@ -41,13 +64,12 @@ exports.index = function(req, res) {
           }
         }
       }
-      console.log(today_events)
-      //find the date
       prettyDate = moment(current_day).format('MMMM Do YYYY')
-      //find the time -- update every second
       prettyTime = moment().format('h:mm:ss a')
-      //check to see what letter day it is (if a letter day)
       letterDay = ""
+      schedule = ""
+
+      //check to see what letter day it is (if a letter day)
       switch (today_events[0]) {
       case "A Day":
         letterDay = "A Day";
@@ -70,11 +92,51 @@ exports.index = function(req, res) {
       default:
         letterDay = "Today has no letter day." 
       }
+      //check to see what schedule it is, and find the right mod
+      if (today_events.length = 1) {
+        schedule = "not modular today."
+      }
 
+      for (var i = 1; i < today_events.length; i++) { 
+        console.log("checking")
+        if (today_events[i].indexOf("Homeroom 1") != -1) {
+          schedule = "Homeroom 1"
+        } else if (today_events.indexOf("Homeroom 2") != -1) {
+          schedule = "Homeroom 2"
+        } else if (today_events.indexOf("Activity 1") != -1) {
+          schedule = "Activity 1"
+        } else if (today_events.indexOf("Activity 2") != -1) {
+          schedule = "Activity 2"
+        } else if (today_events.indexOf("Activity 3") != -1) {
+          schedule = "Activity 3"
+        } else if (today_events.indexOf("Activity 4") != -1) {
+          schedule = "Activity 4"
+        } else if (today_events.indexOf("Activity 5") != -1) {
+          schedule = "Activity 5"
+        } else if (today_events.indexOf("Activity 6") != -1) {
+          schedule = "Activity 6"
+        } else if (today_events.indexOf("Activity 7") != -1) {
+          schedule = "Activity 7"
+        } else if (today_events.indexOf("Activity 8") != -1) {
+          schedule = "Activity 8"
+        } else if (today_events.indexOf("Activity 9") != -1) {
+          schedule = "Activity 9"
+        } else {
+          schedule = "normal."
+        }
+      }
 
+      console.log(sec_to_time(500))
+      console.log(time_to_sec(0,8,20))
 
-      res.render('index', { title: 'UA Mod', ua_letter: letterDay, date: prettyDate, time: prettyTime});
-      //check to see what schedule it is
+      res.render('index', { 
+        title: 'UA Mod', 
+        ua_letter: letterDay, 
+        date: prettyDate, 
+        time: prettyTime,
+        ua_schedule: schedule
+      });
+      
     }
   });
 
