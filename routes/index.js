@@ -1,5 +1,6 @@
 var request = require('request');
 var moment = require('moment');
+var $ = require('jquery');
 
 exports.index = function(req, res) {
   //is this the best place for this list? 
