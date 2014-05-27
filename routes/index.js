@@ -7,13 +7,15 @@ var $ = require('jquery')(window);
 var sched = require('sched');
 
 
-
 function sec_to_time(x) {
   if (x > 86400) {
     console.log("false input time, exceeds 24 hours")
     return [0]
   }
   var hours = Math.floor(x/3600)
+  if (hours > 12) {
+    hours = hours - 12
+  }
   var y = x % 3600
   var minutes = Math.floor(y/60) 
   var seconds = y % 60
@@ -25,6 +27,24 @@ function time_to_sec(h,m,s) {
   var seconds = 0
   seconds += (h*3600) + (m*60) + (s)
   return seconds
+}
+
+function get_mods(array,current,next) {
+  var h = moment().hour()
+  var m = moment().minute()
+  var s = moment().second()
+  now_to_sec = time_to_sec(h,m,s)
+  console.log(now_to_sec)
+  for (var i = 0; i < array.length; i++) {
+    if (now_to_sec > array[i][0]) {
+      if (now_to_sec < array[i+1][0]) {
+        current = array[i][1]
+        next = array[i+1][1]
+        console.log(current)
+        console.log(next)
+      }
+    }
+  } 
 }
 
 exports.index = function(req, res) {
@@ -54,23 +74,23 @@ exports.index = function(req, res) {
         xml = xml.substring(d2+13, xml.length)
         //find the titles for today's dates
         var ua_calendar_day = moment(date).toDate()
-
-
         if (ua_calendar_day.getFullYear() == current_day.getFullYear()) {
           if (ua_calendar_day.getMonth() == current_day.getMonth()) {
             if (ua_calendar_day.getDate() == current_day.getDate()) {
-              console.log("same day")
+              // console.log("same day")
               // console.log("current_day: " + current_day + "ua_calendar_day: " + ua_calendar_day)
               today_events.push(title)
             }
           }
         }
       }
+
       prettyDate = moment(current_day).format('MMMM Do YYYY')
       prettyTime = moment().format('h:mm:ss a')
       letterDay = ""
       schedule = ""
-
+      
+      
       //check to see what letter day it is (if a letter day)
       switch (today_events[0]) {
       case "A Day":
@@ -94,6 +114,7 @@ exports.index = function(req, res) {
       default:
         letterDay = "Today has no letter day." 
       }
+
       //check to see what schedule it is, and find the right mod
       if (today_events.length = 1) {
         schedule = "not modular today."
@@ -125,23 +146,19 @@ exports.index = function(req, res) {
           schedule = "Activity 9"
         } else {
           schedule = "normal."
-
         }
       }
-
-      console.log(sec_to_time(500))
-      console.log(time_to_sec(0,8,20))
-
+      
+      get_mods(sched.normal, current_mod, next_mod)
+      console.log("current: " + current_mod)
+      console.log("next: " + next_mod)
       res.render('index', { 
         title: 'UA Mod', 
         ua_letter: letterDay, 
         date: prettyDate, 
         time: prettyTime,
         ua_schedule: schedule
-      });
-      
+      }); 
     }
   });
-
-
 };
