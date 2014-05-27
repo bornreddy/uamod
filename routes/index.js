@@ -89,6 +89,8 @@ exports.index = function(req, res) {
       prettyTime = moment().format('h:mm:ss a')
       letterDay = ""
       schedule = ""
+      current_mod = ""
+      next_mod = ""
       
       
       //check to see what letter day it is (if a letter day)
@@ -157,7 +159,9 @@ exports.index = function(req, res) {
         ua_letter: letterDay, 
         date: prettyDate, 
         time: prettyTime,
-        ua_schedule: schedule
+        ua_schedule: schedule,
+        current_mod: current_mod,
+        next_mod: next_mod
       }); 
     }
   });
