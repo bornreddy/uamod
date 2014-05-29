@@ -42,6 +42,7 @@ function get_mods(array,current,next) {
         next = array[i+1][1]
         console.log(current)
         console.log(next)
+        return [current, next]
       }
     }
   } 
@@ -117,8 +118,7 @@ exports.index = function(req, res) {
         letterDay = "Today has no letter day." 
       }
 
-      //check to see what schedule it is, and find the right mod
-      if (today_events.length = 1) {
+      if (today_events[0] != (("A Day") | ("B Day") | ("C Day") | ("D Day") | ("E Day") | ("F Day"))) {
         schedule = "not modular today."
       }
 
@@ -126,34 +126,81 @@ exports.index = function(req, res) {
         console.log("checking")
         if (today_events[i].indexOf("Homeroom 1") != -1) {
           schedule = "Homeroom 1"
+          mods = get_mods(sched.home1, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Homeroom 2") != -1) {
           schedule = "Homeroom 2"
+          mods = get_mods(sched.home2, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 1") != -1) {
           schedule = "Activity 1"
+          mods = get_mods(sched.ac1, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 2") != -1) {
           schedule = "Activity 2"
+          mods = get_mods(sched.ac2, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 3") != -1) {
           schedule = "Activity 3"
+          mods = get_mods(sched.ac3, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 4") != -1) {
           schedule = "Activity 4"
+          mods = get_mods(sched.ac4, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 5") != -1) {
           schedule = "Activity 5"
+          mods = get_mods(sched.ac5, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 6") != -1) {
           schedule = "Activity 6"
+          mods = get_mods(sched.ac6, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 7") != -1) {
           schedule = "Activity 7"
+          mods = get_mods(sched.ac7, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 8") != -1) {
           schedule = "Activity 8"
+          mods = get_mods(sched.ac8, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else if (today_events.indexOf("Activity 9") != -1) {
           schedule = "Activity 9"
+          mods = get_mods(sched.ac9, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
         } else {
           schedule = "normal."
-        }
+          mods = get_mods(sched.normal, current_mod, next_mod)
+          current_mod = mods[0]
+          next_mod = mods[1]
+          break
+        } 
       }
       
-      get_mods(sched.normal, current_mod, next_mod)
-      console.log("current: " + current_mod)
-      console.log("next: " + next_mod)
+    
+      console.log(today_events)
       res.render('index', { 
         title: 'UA Mod', 
         ua_letter: letterDay, 
