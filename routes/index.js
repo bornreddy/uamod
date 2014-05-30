@@ -4,7 +4,7 @@ var moment = require('moment');
 var jsdom = require('jsdom');
 var window = jsdom.jsdom().createWindow();
 var $ = require('jquery')(window);
-var sched = require('sched');
+var sched = require('../sched');
 
 
 function sec_to_time(x) {
