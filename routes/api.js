@@ -118,11 +118,12 @@ update = function(callback) {
         letterDay = "Today has no letter day." 
       }
 
-      if (today_events[0] != (("A Day") | today_events[0] != ("B Day") | today_events[0] != ("C Day") | today_events[0] != ("D Day") | today_events[0] != ("E Day") | today_events[0] != ("F Day"))) {
+      if (today_events[0] != ("A Day") && today_events[0] != ("B Day") && today_events[0] != ("C Day") && today_events[0] != ("D Day") && today_events[0] != ("E Day") && today_events[0] != ("F Day")) {
         schedule = "not modular today."
       }
 
-      for (var i = 1; i < today_events.length; i++) { 
+      console.log(today_events)
+      for (var i = 0; i < today_events.length; i++) { 
         console.log(today_events[i])
         console.log("checking schedule type")
         if (today_events[i].indexOf("Homeroom 1") != -1) {
