@@ -85,7 +85,7 @@ exports.index = function(req, res) {
           }
         }
       }
-      console.log(today_events)
+      
       prettyDate = moment(current_day).format('MMMM Do YYYY')
       prettyTime = moment().format('h:mm:ss a')
       letterDay = ""
@@ -123,69 +123,69 @@ exports.index = function(req, res) {
       }
 
       for (var i = 1; i < today_events.length; i++) { 
-        console.log(today_events)
-        console.log("checking")
+        console.log(today_events[i])
+        console.log("checking schedule type")
         if (today_events[i].indexOf("Homeroom 1") != -1) {
           schedule = "Homeroom 1"
           mods = get_mods(sched.home1, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Homeroom 2") != -1) {
+        } else if (today_events[i].indexOf("Homeroom 2") != -1) {
           schedule = "Homeroom 2"
           mods = get_mods(sched.home2, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 1") != -1) {
+        } else if (today_events[i].indexOf("Activity 1") != -1) {
           schedule = "Activity 1"
           mods = get_mods(sched.ac1, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 2") != -1) {
+        } else if (today_events[i].indexOf("Activity 2") != -1) {
           schedule = "Activity 2"
           mods = get_mods(sched.ac2, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 3") != -1) {
+        } else if (today_events[i].indexOf("Activity 3") != -1) {
           schedule = "Activity 3"
           mods = get_mods(sched.ac3, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 4") != -1) {
+        } else if (today_events[i].indexOf("Activity 4") != -1) {
           schedule = "Activity 4"
           mods = get_mods(sched.ac4, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 5") != -1) {
+        } else if (today_events[i].indexOf("Activity 5") != -1) {
           schedule = "Activity 5"
           mods = get_mods(sched.ac5, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 6") != -1) {
+        } else if (today_events[i].indexOf("Activity 6") != -1) {
           schedule = "Activity 6"
           mods = get_mods(sched.ac6, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 7") != -1) {
+        } else if (today_events[i].indexOf("Activity 7") != -1) {
           schedule = "Activity 7"
           mods = get_mods(sched.ac7, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 8") != -1) {
+        } else if (today_events[i].indexOf("Activity 8") != -1) {
           schedule = "Activity 8"
           mods = get_mods(sched.ac8, current_mod, next_mod)
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else if (today_events.indexOf("Activity 9") != -1) {
+        } else if (today_events[i].indexOf("Activity 9") != -1) {
           schedule = "Activity 9"
           mods = get_mods(sched.ac9, current_mod, next_mod)
           current_mod = mods[0]
@@ -201,7 +201,6 @@ exports.index = function(req, res) {
       }
       
     
-      console.log(today_events)
       res.render('index', { 
         title: 'UA Mod', 
         ua_letter: letterDay, 
