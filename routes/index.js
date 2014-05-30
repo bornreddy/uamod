@@ -85,7 +85,7 @@ exports.index = function(req, res) {
           }
         }
       }
-
+      console.log(today_events)
       prettyDate = moment(current_day).format('MMMM Do YYYY')
       prettyTime = moment().format('h:mm:ss a')
       letterDay = ""
@@ -123,6 +123,7 @@ exports.index = function(req, res) {
       }
 
       for (var i = 1; i < today_events.length; i++) { 
+        console.log(today_events)
         console.log("checking")
         if (today_events[i].indexOf("Homeroom 1") != -1) {
           schedule = "Homeroom 1"
