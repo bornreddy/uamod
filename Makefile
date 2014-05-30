@@ -1,5 +1,5 @@
 make:
-	node app.js
+	sudo node app.js
 
 clean: 
 	rm *~
