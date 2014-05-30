@@ -48,7 +48,7 @@ function get_mods(array,current,next) {
   } 
 }
 
-exports.api = function(req, res) {
+update = function(callback) {
   //is this the best place for this list? 
   var today_events = []
   var rss = "http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss"
@@ -200,7 +200,7 @@ exports.api = function(req, res) {
         } 
       }
       
-      res.send({ 
+      callback({ 
         title: 'UA Mod', 
         ua_letter: letterDay, 
         date: prettyDate, 
@@ -211,4 +211,12 @@ exports.api = function(req, res) {
       }); 
     }
   });
+}
+
+exports.update = update;
+
+exports.api = function(req, res) {
+  update(function(json) {
+    res.send(json);
+  })
 };
