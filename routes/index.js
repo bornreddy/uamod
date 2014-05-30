@@ -200,7 +200,6 @@ exports.index = function(req, res) {
         } 
       }
       
-    
       res.render('index', { 
         title: 'UA Mod', 
         ua_letter: letterDay, 
