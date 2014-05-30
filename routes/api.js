@@ -118,7 +118,7 @@ update = function(callback) {
         letterDay = "Today has no letter day." 
       }
 
-      if (today_events[0] != (("A Day") | ("B Day") | ("C Day") | ("D Day") | ("E Day") | ("F Day"))) {
+      if (today_events[0] != (("A Day") | today_events[0] != ("B Day") | today_events[0] != ("C Day") | today_events[0] != ("D Day") | today_events[0] != ("E Day") | today_events[0] != ("F Day"))) {
         schedule = "not modular today."
       }
 
