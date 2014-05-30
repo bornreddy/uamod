@@ -5,6 +5,7 @@
 
  var express = require('express');
  var routes = require('./routes');
+ var api = require('./routes/api');
  var update = require('./routes/update');
  var user = require('./routes/user');
  var http = require('http');
@@ -33,7 +34,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/api', routes.api);
+app.get('/api', api.api);
 app.get('/users', user.list);
 app.post('/update', update.update);
 
