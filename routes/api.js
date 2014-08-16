@@ -85,7 +85,7 @@ update = function(callback) {
         }
       }
       
-      prettyDate = moment(current_day).format('MMMM Do YYYY')
+      prettyDate = moment(current_day).format('MMMM Do, YYYY')
       prettyTime = moment().format('h:mm:ss a')
       letterDay = ""
       schedule = ""
