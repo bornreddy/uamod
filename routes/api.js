@@ -128,79 +128,79 @@ update = function(callback) {
         if (today_events[i].indexOf("Homeroom 1") != -1) {
           schedule = "Homeroom 1"
           mods = get_mods(sched.home1, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Homeroom 2") != -1) {
           schedule = "Homeroom 2"
           mods = get_mods(sched.home2, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: "+ mods[1]
           break
         } else if (today_events[i].indexOf("Activity 1") != -1) {
           schedule = "Activity 1"
           mods = get_mods(sched.ac1, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 2") != -1) {
           schedule = "Activity 2"
           mods = get_mods(sched.ac2, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 3") != -1) {
           schedule = "Activity 3"
           mods = get_mods(sched.ac3, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 4") != -1) {
           schedule = "Activity 4"
           mods = get_mods(sched.ac4, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 5") != -1) {
           schedule = "Activity 5"
           mods = get_mods(sched.ac5, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 6") != -1) {
           schedule = "Activity 6"
           mods = get_mods(sched.ac6, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 7") != -1) {
           schedule = "Activity 7"
           mods = get_mods(sched.ac7, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 8") != -1) {
           schedule = "Activity 8"
           mods = get_mods(sched.ac8, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[i].indexOf("Activity 9") != -1) {
           schedule = "Activity 9"
           mods = get_mods(sched.ac9, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " + mods[1]
           break
         } else if (today_events[0] != ("A Day") && today_events[0] != ("B Day") && today_events[0] != ("C Day") && today_events[0] != ("D Day") && today_events[0] != ("E Day") && today_events[0] != ("F Day")) {
-          schedule = "not modular today."
+          schedule = "not modular today"
           mods = ""
           current_mod = ""
           next_mod = ""
       } else {
           schedule = "normal."
           mods = get_mods(sched.normal, current_mod, next_mod)
-          current_mod = mods[0]
-          next_mod = mods[1]
+          current_mod = "current mod: " + mods[0]
+          next_mod = "next mod: " +mods[1]
           break
         } 
       }
