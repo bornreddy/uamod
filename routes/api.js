@@ -49,7 +49,6 @@ function get_mods(array,current,next) {
 }
 
 update = function(callback) {
-  //is this the best place for this list? 
   var today_events = []
   var rss = "http://www.ursulineacademy.org/data/calendar/rsscache/page_357.rss"
   request(rss, function(error, response, xml) {
@@ -118,9 +117,9 @@ update = function(callback) {
         letterDay = "Today has no letter day." 
       }
 
-      if (today_events[0] != ("A Day") && today_events[0] != ("B Day") && today_events[0] != ("C Day") && today_events[0] != ("D Day") && today_events[0] != ("E Day") && today_events[0] != ("F Day")) {
-        schedule = "not modular today."
-      }
+      // if (today_events[0] != ("A Day") && today_events[0] != ("B Day") && today_events[0] != ("C Day") && today_events[0] != ("D Day") && today_events[0] != ("E Day") && today_events[0] != ("F Day")) {
+      //   schedule = "not modular today."
+      // }
 
       console.log(today_events)
       for (var i = 0; i < today_events.length; i++) { 
@@ -192,7 +191,12 @@ update = function(callback) {
           current_mod = mods[0]
           next_mod = mods[1]
           break
-        } else {
+        } else if (today_events[0] != ("A Day") && today_events[0] != ("B Day") && today_events[0] != ("C Day") && today_events[0] != ("D Day") && today_events[0] != ("E Day") && today_events[0] != ("F Day")) {
+          schedule = "not modular today."
+          mods = ""
+          current_mod = ""
+          next_mod = ""
+      } else {
           schedule = "normal."
           mods = get_mods(sched.normal, current_mod, next_mod)
           current_mod = mods[0]
